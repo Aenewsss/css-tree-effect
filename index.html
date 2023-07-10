@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tree effect</title>
+
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            position: relative;
+        }
+
+        .cards>div {
+            background-color: white;
+            padding: 1em 2em;
+            border-radius: 20px;
+        }
+
+        .sec-cards {
+            position: relative;
+            margin-left: 2em;
+            display: none;
+        }
+
+        .sec-cards::before {
+            position: absolute;
+            content: '';
+            width: 1em;
+            height: 2px;
+            left: -1em;
+            top: 50%;
+            z-index: 1;
+            background-color: black;
+            transform: translateY(-50%);
+        }
+
+        .vertical-line {
+            position: absolute;
+            width: 2px;
+            background-color: black;
+            height: 100%;
+            margin-left: 1em;
+            z-index: -1;
+            display: none;
+        }
+
+        .last-card {
+            position: absolute;
+            background-color: #f4f4f4;
+            width: 1em;
+            height: 50%;
+            z-index: 1;
+            left: -1em;
+            top: 51%;
+            display: none;
+        }
+
+        button {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            color: blue;
+            font-size: 14px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="cards">
+            <div class="main-card">
+                <p>Idade sugerida: 65 anos</p>
+                <p>Você alcançará: R$2500/mês</p>
+                <button id="expand">+ Ver outras idades</button>
+            </div>
+            <div class="sec-cards">
+                <p>Idade sugerida: 66 anos</p>
+                <p>Você alcançará: R$3500/mês</p>
+
+            </div>
+            <div class="sec-cards">
+                <p>Idade sugerida: 67 anos</p>
+                <p>Você alcançará: R$4500/mês</p>
+
+            </div>
+            <div class="sec-cards">
+                <p>Idade sugerida: 68 anos</p>
+                <p>Você alcançará: R$5500/mês</p>
+
+                <span class="last-card"></span>
+            </div>
+
+            <span class="vertical-line"></span>
+        </div>
+    </div>
+
+
+    <script>
+        const expandButton = document.getElementById('expand')
+
+        const secCards = document.querySelectorAll(".sec-cards")
+        const verticalLine = document.querySelector(".vertical-line")
+        const lastCard = document.querySelector(".last-card")
+
+        expandButton.addEventListener("click", () => {
+
+            const text = expand.innerText
+
+            if (text == "- Ver menos") {
+                expand.innerText = "+ Ver outras idades"
+
+                secCards.forEach(el => {
+                    el.style.display = "none";
+                })
+                verticalLine.style.display = "none";
+                lastCard.style.display = "none";
+            } else {
+                expand.innerText = "- Ver menos"
+
+                secCards.forEach(el => {
+                    el.style.display = "unset";
+                })
+                verticalLine.style.display = "unset";
+                lastCard.style.display = "unset";
+            }
+        });
+
+
+
+    </script>
+</body>
+
+</html>
